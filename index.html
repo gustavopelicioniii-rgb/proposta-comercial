@@ -7,191 +7,266 @@
     <meta name="description" content="Proposta comercial para criação de sites profissionais, landing pages e sistemas web.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark: #0a0a0a;
-            --primary: #141414;
-            --secondary: #1a1a1a;
-            --accent: #c9a227;
-            --accent-light: #e6c84a;
-            --text: #e0e0e0;
-            --text-light: #a0a0a0;
-            --white: #ffffff;
+            --dark: #09090b;
+            --primary: #18181b;
+            --secondary: #27272a;
+            --accent: #fbbf24;
+            --accent-hover: #f59e0b;
+            --accent-light: #fcd34d;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+            --text-subtle: #71717a;
+            --border: #3f3f46;
             --success: #22c55e;
+            --gradient: linear-gradient(135deg, #09090b 0%, #18181b 50%, #0c0c0d 100%);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text);
             line-height: 1.6;
-            background: linear-gradient(160deg, var(--dark) 0%, var(--primary) 100%);
+            background: var(--gradient);
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
         /* Header */
         header {
+            padding: 4rem 0;
             text-align: center;
-            padding: 3rem 1rem;
-            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
-            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--white);
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            color: var(--accent);
+            padding: 0.5rem 1.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border-radius: 100px;
         }
-
-        .logo span { color: var(--accent); }
 
         header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--white);
-            margin-bottom: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        header h1 span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         header p {
-            color: var(--text-light);
-            font-size: 1rem;
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
         }
 
-        /* Info */
+        /* Info Cards */
         .info-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
             margin-bottom: 3rem;
-            background: var(--secondary);
-            padding: 2rem;
-            border: 1px solid rgba(201, 162, 39, 0.2);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
             .info-grid { grid-template-columns: 1fr; }
         }
 
-        .info-item h3 {
-            color: var(--accent);
-            font-size: 0.75rem;
-            font-weight: 700;
+        .info-card {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 12px;
+        }
+
+        .info-card label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            color: var(--text-subtle);
             margin-bottom: 0.5rem;
         }
 
-        .info-item p {
-            color: var(--white);
+        .info-card p {
             font-size: 0.95rem;
+            color: var(--text);
+            font-weight: 500;
         }
 
         /* Plans */
         .plans {
             display: grid;
-            gap: 2rem;
+            gap: 1.5rem;
             margin-bottom: 3rem;
         }
 
         .plan {
-            background: var(--secondary);
-            border: 2px solid rgba(255,255,255,0.05);
-            padding: 2.5rem;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
             position: relative;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .plan:hover {
             border-color: var(--accent);
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .plan.featured {
             border-color: var(--accent);
+            background: linear-gradient(180deg, rgba(251, 191, 36, 0.05) 0%, var(--primary) 100%);
         }
 
         .plan.featured::before {
-            content: 'RECOMENDADO';
+            content: '⭐ Mais Popular';
             position: absolute;
             top: -1px;
-            right: 20px;
+            right: 1.5rem;
             background: var(--accent);
             color: var(--dark);
             padding: 0.4rem 1rem;
-            font-size: 0.65rem;
-            font-weight: 800;
+            font-size: 0.7rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            border-radius: 0 0 8px 8px;
         }
 
         .plan-header {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .plan-name {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--white);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
         }
 
         .plan-desc {
-            color: var(--text-light);
             font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
         }
 
         .plan-price {
-            margin-bottom: 2rem;
+            text-align: right;
         }
 
         .plan-price .amount {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
             font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
         }
 
         .plan-price .installments {
-            color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            color: var(--text-subtle);
+            margin-top: 0.25rem;
         }
 
         .plan-features {
-            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
             margin-bottom: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
         }
 
         .plan-features li {
-            color: var(--text);
-            font-size: 0.9rem;
-            padding: 0.6rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
         .plan-features li::before {
             content: '✓';
-            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--success);
+            font-size: 0.7rem;
             font-weight: 700;
+            border-radius: 50%;
+            flex-shrink: 0;
         }
 
         .plan-btn {
             display: block;
             width: 100%;
-            padding: 1rem;
+            padding: 1rem 2rem;
             background: transparent;
             color: var(--accent);
             border: 2px solid var(--accent);
@@ -203,7 +278,7 @@
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
-            text-decoration: none;
+            border-radius: 8px;
         }
 
         .plan-btn:hover {
@@ -217,28 +292,30 @@
         }
 
         .plan.featured .plan-btn:hover {
-            background: var(--accent-light);
+            background: var(--accent-hover);
         }
 
-        /* Included */
-        .included {
+        /* Included Section */
+        .included-section {
             background: var(--secondary);
-            border: 1px solid rgba(201, 162, 39, 0.2);
-            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
             margin-bottom: 3rem;
         }
 
-        .included h2 {
-            font-family: 'Playfair Display', serif;
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
-            color: var(--white);
-            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
             text-align: center;
+            margin-bottom: 2rem;
         }
 
         .included-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
         }
 
@@ -246,8 +323,11 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            color: var(--text);
             font-size: 0.9rem;
+            color: var(--text-muted);
+            padding: 0.75rem;
+            background: rgba(34, 197, 94, 0.05);
+            border-radius: 8px;
         }
 
         .included-item::before {
@@ -256,30 +336,32 @@
             font-weight: 700;
         }
 
-        /* Not included */
+        /* Not Included */
         .not-included {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 2rem;
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
             margin-bottom: 3rem;
         }
 
-        .not-included h2 {
-            font-size: 1.2rem;
-            color: var(--text-light);
+        .not-included h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #f87171;
             margin-bottom: 1rem;
         }
 
         .not-included ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
             list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
         }
 
         .not-included li {
-            color: var(--text-light);
             font-size: 0.85rem;
+            color: var(--text-subtle);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -287,85 +369,135 @@
 
         .not-included li::before {
             content: '×';
-            color: #ef4444;
+            color: #f87171;
             font-weight: 700;
         }
 
         /* Process */
         .process {
             margin-bottom: 3rem;
-            text-align: center;
         }
 
         .process h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--white);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text);
+            text-align: center;
             margin-bottom: 2rem;
         }
 
-        .process-steps {
+        .process-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .process-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         .step {
             text-align: center;
-            padding: 1.5rem;
+            padding: 1.5rem 1rem;
             background: var(--secondary);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .step::after {
+            content: '→';
+            position: absolute;
+            right: -0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-subtle);
+            font-size: 1.25rem;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .step::after { display: none; }
         }
 
         .step-number {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: var(--accent);
             color: var(--dark);
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            border-radius: 50%;
+            margin: 0 auto 0.75rem;
         }
 
         .step h4 {
-            color: var(--white);
             font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
         }
 
         .step p {
-            color: var(--text-light);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
+            color: var(--text-subtle);
         }
 
         /* CTA */
-        .cta {
-            background: linear-gradient(160deg, var(--dark) 0%, var(--primary) 100%);
+        .cta-section {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, transparent 100%);
             border: 2px solid var(--accent);
+            border-radius: 20px;
             padding: 3rem;
             text-align: center;
             margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .cta h2 {
-            font-family: 'Playfair Display', serif;
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 2rem;
-            color: var(--white);
-            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+            position: relative;
         }
 
-        .cta h2 span { color: var(--accent); }
+        .cta-section h2 span {
+            color: var(--accent);
+        }
 
-        .cta p {
-            color: var(--text-light);
+        .cta-section p {
+            font-size: 1rem;
+            color: var(--text-muted);
             margin-bottom: 2rem;
             max-width: 500px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
         }
 
         .cta-btn {
@@ -374,44 +506,46 @@
             color: var(--dark);
             padding: 1.1rem 3rem;
             font-weight: 800;
-            text-transform: uppercase;
             font-size: 0.9rem;
+            text-transform: uppercase;
             letter-spacing: 2px;
-            text-decoration: none;
+            border-radius: 8px;
             transition: all 0.3s;
+            position: relative;
         }
 
         .cta-btn:hover {
-            background: var(--accent-light);
-            transform: translateY(-3px);
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
         }
 
         /* Warranty */
         .warranty {
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
             background: var(--secondary);
-            border: 1px solid rgba(201, 162, 39, 0.2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             margin-bottom: 3rem;
         }
 
         .warranty-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
         }
 
-        .warranty h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--white);
-            margin-bottom: 0.5rem;
+        .warranty-text h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
         }
 
-        .warranty p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            max-width: 400px;
-            margin: 0 auto;
+        .warranty-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
         /* Signature */
@@ -421,7 +555,7 @@
             gap: 3rem;
             margin-top: 4rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid var(--border);
         }
 
         @media (max-width: 600px) {
@@ -435,38 +569,31 @@
         .signature-line {
             width: 100%;
             height: 1px;
-            background: var(--text-light);
+            background: var(--border);
             margin-bottom: 0.5rem;
         }
 
         .signature-box p {
-            color: var(--text-light);
             font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 2rem;
-            border-top: 1px solid rgba(201, 162, 39, 0.15);
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
             margin-top: 3rem;
         }
 
         footer p {
-            color: rgba(255,255,255,0.35);
             font-size: 0.8rem;
+            color: var(--text-subtle);
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        /* Print */
-        @media print {
-            body { background: white; color: black; }
-            .plan { border: 1px solid #ccc; }
-            .cta-btn, .plan-btn { background: #ccc; color: black; }
-        }
-
-        /* WhatsApp */
+        /* WhatsApp Float */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -478,12 +605,12 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
+            border-radius: 50%;
             z-index: 1000;
             transition: all 0.3s;
-            text-decoration: none;
-            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
         }
 
         .whatsapp-float:hover {
@@ -492,114 +619,123 @@
         }
 
         @media (max-width: 768px) {
-            header h1 { font-size: 1.8rem; }
-            .plan-price .amount { font-size: 2.5rem; }
-            .process-steps { grid-template-columns: 1fr 1fr; }
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo">SeuNome <span>Estúdio</span></div>
-            <h1>Proposta Comercial</h1>
-            <p>Criação de Sites Profissionais para seu Negócio</p>
+            <div class="badge">Proposta Comercial</div>
+            <h1>Sites Profissionais para<br><span>seu Negócio decolar</span></h1>
+            <p>Design de alto padrão, performance otimizada e resultados reais. Sua presença digital completa.</p>
         </header>
 
         <div class="info-grid">
-            <div class="info-item">
-                <h3>Cliente</h3>
+            <div class="info-card">
+                <label>Cliente</label>
                 <p>[Nome do Cliente]</p>
             </div>
-            <div class="info-item">
-                <h3>Data</h3>
+            <div class="info-card">
+                <label>Data</label>
                 <p>16 de Abril de 2026</p>
             </div>
-            <div class="info-item">
-                <h3>Validade</h3>
+            <div class="info-card">
+                <label>Validade</label>
                 <p>15 dias</p>
             </div>
-            <div class="info-item">
-                <h3>Contato</h3>
-                <p>(11) 99999-9999 | email@exemplo.com</p>
+            <div class="info-card">
+                <label>Contato</label>
+                <p>(11) 99999-9999</p>
             </div>
         </div>
 
         <div class="plans">
             <div class="plan">
                 <div class="plan-header">
-                    <div class="plan-name">Landing Page</div>
-                    <div class="plan-desc">Ideal para profissionais liberais e pequenos negócios</div>
-                </div>
-                <div class="plan-price">
-                    <span class="amount">R$ 2.500</span>
-                    <div class="installments">ou 3x de R$ 933 sem juros</div>
+                    <div>
+                        <div class="plan-name">Landing Page</div>
+                        <div class="plan-desc">Ideal para profissionais e pequenos negócios</div>
+                    </div>
+                    <div class="plan-price">
+                        <div class="amount">R$ 2.500</div>
+                        <div class="installments">ou 3× de R$ 933</div>
+                    </div>
                 </div>
                 <ul class="plan-features">
-                    <li>1 página única (Home + Serviços + Contato)</li>
-                    <li>Design responsivo (mobile/desktop)</li>
-                    <li>SEO básico otimizado</li>
-                    <li>Integração WhatsApp</li>
+                    <li>1 página completa</li>
+                    <li>Design responsivo</li>
+                    <li>SEO básico</li>
+                    <li>WhatsApp integrado</li>
                     <li>Formulário de contato</li>
                     <li>Hospedagem 1 ano</li>
-                    <li>SSL (site seguro)</li>
-                    <li>Entrega em 3-5 dias</li>
+                    <li>SSL incluso</li>
+                    <li>Entrega: 3-5 dias</li>
                 </ul>
                 <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre a Landing Page." class="plan-btn" target="_blank">Quero Este</a>
             </div>
 
             <div class="plan featured">
                 <div class="plan-header">
-                    <div class="plan-name">Site Corporativo</div>
-                    <div class="plan-desc">Para empresas, escritórios e clínicas</div>
-                </div>
-                <div class="plan-price">
-                    <span class="amount">R$ 5.000</span>
-                    <div class="installments">ou 6x de R$ 917 sem juros</div>
+                    <div>
+                        <div class="plan-name">Site Corporativo</div>
+                        <div class="plan-desc">Para empresas, escritórios e clínicas</div>
+                    </div>
+                    <div class="plan-price">
+                        <div class="amount">R$ 5.000</div>
+                        <div class="installments">ou 6× de R$ 917</div>
+                    </div>
                 </div>
                 <ul class="plan-features">
                     <li>Até 5 páginas</li>
-                    <li>Design premium com animações</li>
-                    <li>SEO completo (meta tags, sitemap)</li>
-                    <li>Google Analytics integrado</li>
-                    <li>Integração WhatsApp + mapa</li>
+                    <li>Design premium + animações</li>
+                    <li>SEO completo</li>
+                    <li>Google Analytics</li>
+                    <li>WhatsApp + mapa</li>
                     <li>Formulário profissional</li>
                     <li>Hospedagem 1 ano + SSL</li>
                     <li>Suporte 30 dias</li>
-                    <li>Entrega em 7-10 dias</li>
+                    <li>Entrega: 7-10 dias</li>
                 </ul>
                 <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre o Site Corporativo." class="plan-btn" target="_blank">Quero Este</a>
             </div>
 
             <div class="plan">
                 <div class="plan-header">
-                    <div class="plan-name">Site Premium + SEO</div>
-                    <div class="plan-desc">Para quem quer resultado no Google</div>
-                </div>
-                <div class="plan-price">
-                    <span class="amount">R$ 8.000</span>
-                    <div class="installments">ou 10x de R$ 880 sem juros</div>
+                    <div>
+                        <div class="plan-name">Site Premium + SEO</div>
+                        <div class="plan-desc">Para quem quer resultado no Google</div>
+                    </div>
+                    <div class="plan-price">
+                        <div class="amount">R$ 8.000</div>
+                        <div class="installments">ou 10× de R$ 880</div>
+                    </div>
                 </div>
                 <ul class="plan-features">
                     <li>Até 8 páginas</li>
                     <li>Design premium customizado</li>
-                    <li>SEO completo + Google Search Console</li>
-                    <li>Textos profissionais otimizados</li>
-                    <li>3 meses de suporte incluso</li>
+                    <li>SEO completo + Search Console</li>
+                    <li>Textos otimizados</li>
+                    <li>3 meses suporte</li>
                     <li>Hospedagem 1 ano + SSL</li>
-                    <li>Training de uso</li>
-                    <li>Relatório mensal de visitas</li>
-                    <li>Entrega em 15 dias</li>
+                    <li>Treinamento de uso</li>
+                    <li>Relatório mensal</li>
+                    <li>Entrega: 15 dias</li>
                 </ul>
                 <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre o Site Premium + SEO." class="plan-btn" target="_blank">Quero Este</a>
             </div>
         </div>
 
-        <div class="included">
-            <h2>O Que Está Incluso em Todos os Planos</h2>
+        <div class="included-section">
+            <h2 class="section-title">Incluído em Todos os Planos</h2>
             <div class="included-grid">
                 <div class="included-item">Design profissional e único</div>
-                <div class="included-item">100% responsivo (celular)</div>
+                <div class="included-item">100% responsivo (mobile)</div>
                 <div class="included-item">Otimização para Google</div>
                 <div class="included-item">Integração WhatsApp</div>
                 <div class="included-item">Formulário funcional</div>
@@ -610,7 +746,7 @@
         </div>
 
         <div class="not-included">
-            <h2>Não Está Incluso</h2>
+            <h3>Não está incluído</h3>
             <ul>
                 <li>Copywriting completo</li>
                 <li>Fotografias profissionais</li>
@@ -622,20 +758,20 @@
 
         <div class="process">
             <h2>Como Funciona</h2>
-            <div class="process-steps">
+            <div class="process-grid">
                 <div class="step">
                     <div class="step-number">1</div>
                     <h4>Reunião</h4>
-                    <p>Alinhamento de expectativas (30 min)</p>
+                    <p>30 min online</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <h4>Contrato</h4>
-                    <p>Assinatura + 50% entrada</p>
+                    <p>50% entrada</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h4> Criação</h4>
+                    <h4>Criação</h4>
                     <p>Layout em 2-3 dias</p>
                 </div>
                 <div class="step">
@@ -646,13 +782,13 @@
                 <div class="step">
                     <div class="step-number">5</div>
                     <h4>Final</h4>
-                    <p>Liberação + 50% + Publish</p>
+                    <p>50% + publicação</p>
                 </div>
             </div>
         </div>
 
-        <div class="cta">
-            <h2>Pronto Para <span>Começar</span>?</h2>
+        <div class="cta-section">
+            <h2>Pronto para <span>começar</span>?</h2>
             <p>Entre em contato agora e receba sua proposta personalizada. Válida por 15 dias.</p>
             <a href="https://wa.me/5511999999999?text=Olá! Vi sua proposta comercial e gostaria de conversar." class="cta-btn" target="_blank">
                 Falar Agora
@@ -661,8 +797,10 @@
 
         <div class="warranty">
             <div class="warranty-icon">🛡️</div>
-            <h3>Garantia de Satisfação</h3>
-            <p>Se por qualquer motivo você não ficar satisfeito, fazemos ajustes até que fique feliz. Seu investimento está protegido.</p>
+            <div class="warranty-text">
+                <h4>Garantia de Satisfação</h4>
+                <p>Se não ficar satisfeito, fazemos ajustes até ficar feliz. Seu investimento está protegido.</p>
+            </div>
         </div>
 
         <div class="signature-section">
@@ -677,10 +815,12 @@
         </div>
 
         <footer>
-            <p>Proposta válida por 15 dias | © 2026 Seu Nome Estúdio</p>
+            <p>© 2026 Seu Nome Estúdio | Proposta válida por 15 dias</p>
         </footer>
     </div>
 
-    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-float" title="Fale conosco no WhatsApp">W</a>
+    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-float" title="Fale conosco">
+        W
+    </a>
 </body>
 </html>
