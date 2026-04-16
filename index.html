@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial | Sites Profissionais</title>
+    <meta name="description" content="Proposta comercial para criação de sites profissionais, landing pages e sistemas web.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark: #0a0a0a;
+            --primary: #141414;
+            --secondary: #1a1a1a;
+            --accent: #c9a227;
+            --accent-light: #e6c84a;
+            --text: #e0e0e0;
+            --text-light: #a0a0a0;
+            --white: #ffffff;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: linear-gradient(160deg, var(--dark) 0%, var(--primary) 100%);
+            min-height: 100vh;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .logo span { color: var(--accent); }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* Info */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: var(--secondary);
+            padding: 2rem;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            .info-grid { grid-template-columns: 1fr; }
+        }
+
+        .info-item h3 {
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item p {
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        /* Plans */
+        .plans {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .plan {
+            background: var(--secondary);
+            border: 2px solid rgba(255,255,255,0.05);
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .plan:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .plan.featured {
+            border-color: var(--accent);
+        }
+
+        .plan.featured::before {
+            content: 'RECOMENDADO';
+            position: absolute;
+            top: -1px;
+            right: 20px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.4rem 1rem;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plan-header {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .plan-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-desc {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .plan-price {
+            margin-bottom: 2rem;
+        }
+
+        .plan-price .amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .plan-price .installments {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            color: var(--text);
+            font-size: 0.9rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .plan-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .plan-btn:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .plan.featured .plan-btn {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .plan.featured .plan-btn:hover {
+            background: var(--accent-light);
+        }
+
+        /* Included */
+        .included {
+            background: var(--secondary);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .included h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .included-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .included-item::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        /* Not included */
+        .not-included {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .not-included h2 {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .not-included ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .not-included li {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .not-included li::before {
+            content: '×';
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        /* Process */
+        .process {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .process h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--secondary);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: var(--dark);
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .step h4 {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(160deg, var(--dark) 0%, var(--primary) 100%);
+            border: 2px solid var(--accent);
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta h2 span { color: var(--accent); }
+
+        .cta p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 1.1rem 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        /* Warranty */
+        .warranty {
+            text-align: center;
+            padding: 2rem;
+            background: var(--secondary);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            margin-bottom: 3rem;
+        }
+
+        .warranty-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .warranty h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .warranty p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Signature */
+        .signature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 600px) {
+            .signature-section { grid-template-columns: 1fr; }
+        }
+
+        .signature-box {
+            text-align: center;
+        }
+
+        .signature-line {
+            width: 100%;
+            height: 1px;
+            background: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .signature-box p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(201, 162, 39, 0.15);
+            margin-top: 3rem;
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.35);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Print */
+        @media print {
+            body { background: white; color: black; }
+            .plan { border: 1px solid #ccc; }
+            .cta-btn, .plan-btn { background: #ccc; color: black; }
+        }
+
+        /* WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            z-index: 1000;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128c7e;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .plan-price .amount { font-size: 2.5rem; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">SeuNome <span>Estúdio</span></div>
+            <h1>Proposta Comercial</h1>
+            <p>Criação de Sites Profissionais para seu Negócio</p>
+        </header>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <h3>Cliente</h3>
+                <p>[Nome do Cliente]</p>
+            </div>
+            <div class="info-item">
+                <h3>Data</h3>
+                <p>16 de Abril de 2026</p>
+            </div>
+            <div class="info-item">
+                <h3>Validade</h3>
+                <p>15 dias</p>
+            </div>
+            <div class="info-item">
+                <h3>Contato</h3>
+                <p>(11) 99999-9999 | email@exemplo.com</p>
+            </div>
+        </div>
+
+        <div class="plans">
+            <div class="plan">
+                <div class="plan-header">
+                    <div class="plan-name">Landing Page</div>
+                    <div class="plan-desc">Ideal para profissionais liberais e pequenos negócios</div>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">R$ 2.500</span>
+                    <div class="installments">ou 3x de R$ 933 sem juros</div>
+                </div>
+                <ul class="plan-features">
+                    <li>1 página única (Home + Serviços + Contato)</li>
+                    <li>Design responsivo (mobile/desktop)</li>
+                    <li>SEO básico otimizado</li>
+                    <li>Integração WhatsApp</li>
+                    <li>Formulário de contato</li>
+                    <li>Hospedagem 1 ano</li>
+                    <li>SSL (site seguro)</li>
+                    <li>Entrega em 3-5 dias</li>
+                </ul>
+                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre a Landing Page." class="plan-btn" target="_blank">Quero Este</a>
+            </div>
+
+            <div class="plan featured">
+                <div class="plan-header">
+                    <div class="plan-name">Site Corporativo</div>
+                    <div class="plan-desc">Para empresas, escritórios e clínicas</div>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">R$ 5.000</span>
+                    <div class="installments">ou 6x de R$ 917 sem juros</div>
+                </div>
+                <ul class="plan-features">
+                    <li>Até 5 páginas</li>
+                    <li>Design premium com animações</li>
+                    <li>SEO completo (meta tags, sitemap)</li>
+                    <li>Google Analytics integrado</li>
+                    <li>Integração WhatsApp + mapa</li>
+                    <li>Formulário profissional</li>
+                    <li>Hospedagem 1 ano + SSL</li>
+                    <li>Suporte 30 dias</li>
+                    <li>Entrega em 7-10 dias</li>
+                </ul>
+                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre o Site Corporativo." class="plan-btn" target="_blank">Quero Este</a>
+            </div>
+
+            <div class="plan">
+                <div class="plan-header">
+                    <div class="plan-name">Site Premium + SEO</div>
+                    <div class="plan-desc">Para quem quer resultado no Google</div>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">R$ 8.000</span>
+                    <div class="installments">ou 10x de R$ 880 sem juros</div>
+                </div>
+                <ul class="plan-features">
+                    <li>Até 8 páginas</li>
+                    <li>Design premium customizado</li>
+                    <li>SEO completo + Google Search Console</li>
+                    <li>Textos profissionais otimizados</li>
+                    <li>3 meses de suporte incluso</li>
+                    <li>Hospedagem 1 ano + SSL</li>
+                    <li>Training de uso</li>
+                    <li>Relatório mensal de visitas</li>
+                    <li>Entrega em 15 dias</li>
+                </ul>
+                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre o Site Premium + SEO." class="plan-btn" target="_blank">Quero Este</a>
+            </div>
+        </div>
+
+        <div class="included">
+            <h2>O Que Está Incluso em Todos os Planos</h2>
+            <div class="included-grid">
+                <div class="included-item">Design profissional e único</div>
+                <div class="included-item">100% responsivo (celular)</div>
+                <div class="included-item">Otimização para Google</div>
+                <div class="included-item">Integração WhatsApp</div>
+                <div class="included-item">Formulário funcional</div>
+                <div class="included-item">SSL (site seguro)</div>
+                <div class="included-item">Hospedagem na Vercel</div>
+                <div class="included-item">Suporte inicial</div>
+            </div>
+        </div>
+
+        <div class="not-included">
+            <h2>Não Está Incluso</h2>
+            <ul>
+                <li>Copywriting completo</li>
+                <li>Fotografias profissionais</li>
+                <li>Manutenção mensal</li>
+                <li>Criação de conteúdo</li>
+                <li>Campanhas de anúncios</li>
+            </ul>
+        </div>
+
+        <div class="process">
+            <h2>Como Funciona</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Reunião</h4>
+                    <p>Alinhamento de expectativas (30 min)</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Contrato</h4>
+                    <p>Assinatura + 50% entrada</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4> Criação</h4>
+                    <p>Layout em 2-3 dias</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Revisão</h4>
+                    <p>Ajustes em 1-2 dias</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Final</h4>
+                    <p>Liberação + 50% + Publish</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta">
+            <h2>Pronto Para <span>Começar</span>?</h2>
+            <p>Entre em contato agora e receba sua proposta personalizada. Válida por 15 dias.</p>
+            <a href="https://wa.me/5511999999999?text=Olá! Vi sua proposta comercial e gostaria de conversar." class="cta-btn" target="_blank">
+                Falar Agora
+            </a>
+        </div>
+
+        <div class="warranty">
+            <div class="warranty-icon">🛡️</div>
+            <h3>Garantia de Satisfação</h3>
+            <p>Se por qualquer motivo você não ficar satisfeito, fazemos ajustes até que fique feliz. Seu investimento está protegido.</p>
+        </div>
+
+        <div class="signature-section">
+            <div class="signature-box">
+                <div class="signature-line"></div>
+                <p>Cliente</p>
+            </div>
+            <div class="signature-box">
+                <div class="signature-line"></div>
+                <p>Seu Nome | Seu Estúdio</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Proposta válida por 15 dias | © 2026 Seu Nome Estúdio</p>
+        </footer>
+    </div>
+
+    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-float" title="Fale conosco no WhatsApp">W</a>
+</body>
+</html>
